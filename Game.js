@@ -15,10 +15,25 @@ class Game {
 
   startGame = () => {
     // creates new players
-    for (let i = 0; i < this.playersNumber; i++) {
-      console.log(this.playersNumber);
-    }
     ViewManager.createModal(".root", "mainBoard");
+    if (this.playersNumber) {
+      for (let i = 0; i < this.playersNumber; i++) {
+        console.log(this.playersNumber);
+        ViewManager.createElement(
+          ".mainBoard",
+          "div",
+          "playersBoard",
+          `player${i}`
+        );
+      }
+      ViewManager.createElement(".mainBoard", "div", "dicesPanel");
+      const exchangeButton = ViewManager.createElement(
+        ".mainBoard",
+        "button",
+        "playerExchanges"
+      );
+      exchangeButton.textContent = "EXCHANGE";
+    }
   };
 }
 const game = new Game();
