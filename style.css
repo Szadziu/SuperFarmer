@@ -154,8 +154,38 @@ h3 {
 }
 
 .dicesPanel {
-  background-color: lightblue;
   grid-area: 3/6/11/8;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  background-color: lightblue;
+}
+
+.roll {
+  order: 1;
+}
+
+.overlay {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(128, 128, 128, 0.425);
+}
+
+.displayResult {
+  background: red;
+  text-align: center;
+  line-height: 200px;
+  font-size: 60px;
+  height: 200px;
 }
 
 .playerExchanges {
@@ -164,6 +194,37 @@ h3 {
   font-size: 2rem;
   color: rgb(14, 55, 97);
   font-family: arial;
+}
+
+.exchangePanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) !important;
+  width: 50%;
+  height: 50%;
+  background: var(--lightBlue);
+  z-index: 2;
+}
+
+.exchangesField {
+  background-color: rgb(84, 212, 195);
+  flex-basis: 40%;
+  height: 14%;
+  border: 1px solid black;
+}
+
+.exchangesButton {
+  background-color: rgb(45, 233, 170);
+
+  flex-basis: 40%;
+  height: 14%;
 }
 
 @keyframes sky {

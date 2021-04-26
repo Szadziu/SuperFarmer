@@ -1,7 +1,19 @@
 class ViewManager {
-  static createModal(parentElementCssSelector, ...classesName) {
+  static createModal(parentElementCssSelector, isOverlay, ...classesName) {
     const modal = document.createElement("div");
-    document.querySelector(parentElementCssSelector).appendChild(modal);
+    // parent HTML element
+    const parent = document.querySelector(parentElementCssSelector);
+    //if overlay is set to true
+    if (isOverlay) {
+      const overlay = document.createElement("div");
+      overlay.classList.add("overlay");
+      parent.append(overlay);
+      overlay.addEventListener("click", () => {
+        parent.removeChild(modal);
+        parent.removeChild(overlay);
+      });
+    }
+    parent.append(modal);
     // add multiple classes names to created HTML element
     for (let i = 0; i < classesName.length; i++) {
       modal.classList.add(classesName[i]);
@@ -10,6 +22,7 @@ class ViewManager {
     modal.style.transform = "scale(0)";
     modal.style.transition = "1s";
     setTimeout(() => (modal.style.transform = "scale(1)"));
+    return modal;
   }
 
   static createElement(parentElementCssSelector, element, ...classesName) {
