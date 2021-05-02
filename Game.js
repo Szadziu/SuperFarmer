@@ -54,8 +54,9 @@ class Game {
       exchangeButton.addEventListener("click", this.playerExchange);
       const rollBones = ViewManager.createElement(
         ".dicesPanel",
-        "button",
-        "roll"
+        "div",
+        "roll",
+        "diceStyle"
       );
       for (let i = 0; i < 2; i++) {
         const dice = ViewManager.createElement(
@@ -65,10 +66,14 @@ class Game {
         );
         dice.style.order = i * 2;
         dice.dataset.key = i;
-        dice.textContent = "X";
+        dice.textContent = "🎲";
       }
 
-      rollBones.textContent = "ROLL";
+      // const rollImg = document.createElement("img");
+      // rollBones.appendChild(rollImg);
+      // rollImg.src = "img/mainMenu.jpg";
+      // roll.classList.add("diceStyle");
+      // rollBones.textContent = "ROLL";
       exchangeButton.textContent = "EXCHANGE";
     }
   };
