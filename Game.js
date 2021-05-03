@@ -68,13 +68,7 @@ class Game {
         dice.dataset.key = i;
         dice.textContent = "🎲";
       }
-
-      // const rollImg = document.createElement("img");
-      // rollBones.appendChild(rollImg);
-      // rollImg.src = "img/mainMenu.jpg";
-      // roll.classList.add("diceStyle");
-      // rollBones.textContent = "ROLL";
-      exchangeButton.textContent = "EXCHANGE";
+      exchangeButton.textContent = "exchanges";
     }
   };
 
