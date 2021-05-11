@@ -1,3 +1,16 @@
+/**
+ * @enum
+ * @readonly
+ */
+const ANIMALS_ENUM = {
+  0: ["rabbit", "🐇"],
+  1: ["sheep", "🐑"],
+  2: ["pig", "🐖"],
+  3: ["cow", "🐄"],
+  4: ["horse", "🐎"],
+  5: ["wolf", "🐺"],
+};
+
 class Game {
   constructor() {
     this.players = [];
@@ -42,16 +55,16 @@ class Game {
 
       // EXCHANGES BUTTON
 
-      ViewManager.createElement(".mainBoard", "div", "dicesPanel");
       const exchangeButton = ViewManager.createElement(
         ".mainBoard",
         "button",
         "playerExchanges"
       );
+      exchangeButton.addEventListener("click", this.playerExchange);
+      exchangeButton.textContent = "exchanges";
 
       // DICES PANEL
-
-      exchangeButton.addEventListener("click", this.playerExchange);
+      ViewManager.createElement(".mainBoard", "div", "dicesPanel");
       const rollBones = ViewManager.createElement(
         ".dicesPanel",
         "div",
@@ -64,13 +77,21 @@ class Game {
           "div",
           "displayResult"
         );
+        dice.addEventListener("click", () => this.rollDice(dice));
         dice.style.order = i * 2;
         dice.dataset.key = i;
         dice.textContent = "🎲";
       }
-      exchangeButton.textContent = "exchanges";
     }
   };
+
+  rollDice(dice) {
+    const animals = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5];
+    const randomIndex = Math.floor(Math.random() * animals.length);
+
+    const randomAnimal = ANIMALS_ENUM[animals[randomIndex]][1];
+    dice.textContent = randomAnimal;
+  }
 
   playerExchange() {
     const modal = ViewManager.createModal(".mainBoard", true, "exchangePanel");
