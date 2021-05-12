@@ -192,6 +192,7 @@ h3 {
 }
 
 .displayResult {
+  position: relative;
   background: #d97e52;
   text-align: center;
   line-height: 100px;
@@ -200,6 +201,7 @@ h3 {
   width: 100px;
   border-radius: 50%;
   box-shadow: 0 0 4px 4px #5c301a;
+  cursor: pointer;
 }
 
 .playerExchanges {
@@ -252,6 +254,25 @@ h3 {
   background-image: url(img/redDices.png);
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.result {
+  z-index: 999;
+  position: relative;
+}
+
+.diceOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #444;
+  opacity: 0.3;
+
+  transition: 300ms;
 }
 
 @keyframes sky {

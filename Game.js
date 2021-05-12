@@ -75,22 +75,39 @@ class Game {
         const dice = ViewManager.createElement(
           ".dicesPanel",
           "div",
-          "displayResult"
+          "displayResult",
+          `dice${i}`
         );
-        dice.addEventListener("click", () => this.rollDice(dice));
+        const diceOverlay = ViewManager.createElement(
+          `.dice${i}`,
+          "div",
+          "diceOverlay"
+        );
+
+        const result = ViewManager.createElement(`.dice${i}`, "div", "result");
+
+        dice.addEventListener("click", () =>
+          this.rollDice(result, diceOverlay)
+        );
         dice.style.order = i * 2;
         dice.dataset.key = i;
-        dice.textContent = "🎲";
+        result.textContent = "🎲";
       }
     }
   };
 
-  rollDice(dice) {
+  rollDice(result, diceOverlay) {
     const animals = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5];
     const randomIndex = Math.floor(Math.random() * animals.length);
 
+    //overlay animation
+    diceOverlay.style.transform = "translate(-50%, -50%) scale(1)";
+    setTimeout(() => {
+      diceOverlay.style.transform = "translate(-50%, -50%) scale(0)";
+    }, 350);
+
     const randomAnimal = ANIMALS_ENUM[animals[randomIndex]][1];
-    dice.textContent = randomAnimal;
+    result.textContent = randomAnimal;
   }
 
   playerExchange() {
