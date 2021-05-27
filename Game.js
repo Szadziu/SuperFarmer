@@ -18,14 +18,21 @@ class Game {
     this.activePlayer = 0;
   }
 
-  getActivePlayer() {
+  getActivePlayer = () => {
     const players = document.querySelectorAll(".playersBoard");
     for (let i = 0; i < players.length; i++) {
       players[i].style.boxShadow = "0 0 0 0 transparent";
     }
     players[this.activePlayer].style.boxShadow = "0 0 4px 4px brown";
-  }
+  };
 
+  endTurn = () => {
+    this.activePlayer =
+      this.activePlayer === this.playersNumber - 1 ? 0 : this.activePlayer + 1;
+    this.getActivePlayer();
+  };
+
+  // initial menu buttons handling
   choosePlayers(e, number) {
     const buttons = document.querySelectorAll(".players");
 
@@ -58,10 +65,22 @@ class Game {
       const exchangeButton = ViewManager.createElement(
         ".mainBoard",
         "button",
-        "playerExchanges"
+        "gameButtons",
+        "exchangeArea"
       );
       exchangeButton.addEventListener("click", this.playerExchange);
       exchangeButton.textContent = "exchanges";
+
+      // END TURN BUTTON
+
+      const endTurnButton = ViewManager.createElement(
+        ".mainBoard",
+        "button",
+        "gameButtons",
+        "endTurnArea"
+      );
+      endTurnButton.addEventListener("click", this.endTurn);
+      endTurnButton.textContent = "end turn";
 
       // DICES PANEL
       ViewManager.createElement(".mainBoard", "div", "dicesPanel");

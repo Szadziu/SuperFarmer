@@ -204,9 +204,16 @@ h3 {
   cursor: pointer;
 }
 
-.playerExchanges {
-  background-color: #d97e52;
+.endTurnArea {
+  grid-area: 6/9/8/12;
+}
+
+.exchangeArea {
   grid-area: 6/2/8/5;
+}
+
+.gameButtons {
+  background-color: #d97e52;
   border-style: none;
   box-shadow: 0 0 2px 2px #5c301a;
   font-size: 2rem;
@@ -230,7 +237,7 @@ h3 {
   width: 50%;
   height: 50%;
   background: var(--lightBlue);
-  z-index: 2;
+  z-index: 9999;
 }
 
 .exchangesField {
